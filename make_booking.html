@@ -1,0 +1,127 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <title>The Ongaonga Bed & Breakfast | Make a Booking</title>
+  <meta name="description" content="website description" />
+  <meta name="keywords" content="website keywords, website keywords" />
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+  <link rel="stylesheet" type="text/css" href="style/style.css" title="style" />
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>	<!--implemented last minute, wont clear without being clicked-->
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> <!--needs to be cleaned up and made into js file, see edit_booking.html for better date picker-->
+  <script>
+  $( function() {
+    var dateFormat = "mm/dd/yy",
+      from = $( "#from" )
+        .datepicker({
+          defaultDate: "+1w",
+          changeMonth: true,
+          numberOfMonths: 3
+        })
+        .on( "change", function() {
+          to.datepicker( "option", "minDate", getDate( this ) );
+        }),
+      to = $( "#to" ).datepicker({
+        defaultDate: "+1w",
+        changeMonth: true,
+        numberOfMonths: 3
+      })
+      .on( "change", function() {
+        from.datepicker( "option", "maxDate", getDate( this ) );
+      });
+    function getDate( element ) {
+      var date;
+      try {
+        date = $.datepicker.parseDate( dateFormat, element.value );
+      } catch( error ) {
+        date = null;
+      }
+      return date;
+    }
+  } );
+  </script>
+</head>
+<script>int contactNo = null;</script>
+<body>
+  <div id="main">
+    <div id="header">
+      <div id="logo">
+        <div id="logo_text">
+          <h1><a href="index.html">The Ongaonga Bed & Breakfast<span class="logo_colour"></span></a></h1>
+          <h2>Come stay with us!</h2>
+        </div>
+      </div>
+      <div id="menubar">
+        <ul id="menu">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="examples.html">Examples</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+		  <li class="selected"><a href="current_booking.html">Booking</a></li>
+        </ul>
+      </div>
+    </div>
+    <div id="site_content">
+      <div class="sidebar">
+        <h3>Latest News</h3>
+        <h4>New Website Launched</h4>
+        <h5>July 1st, 2014</h5>
+        <p>2014 sees the redesign of our website. Take a look around and let us know what you think.<br /><a href="#">Read more</a></p>
+        <p></p>
+        <h4>New Website Launched</h4>
+        <h5>July 1st, 2014</h5>
+        <p>2014 sees the redesign of our website. Take a look around and let us know what you think.<br /><a href="#">Read more</a></p>
+        <h3>Useful Links</h3>
+        <ul>
+          <li><a href="#">link 1</a></li>
+          <li><a href="#">link 2</a></li>
+          <li><a href="#">link 3</a></li>
+          <li><a href="#">link 4</a></li>
+        </ul>
+        <h3>Search</h3>
+        <form method="post" action="#" id="search_form">
+          <p>
+            <input class="search" type="text" name="search_field" value="Enter keywords....." />
+            <input name="search" type="image" style="border: 0; margin: 0 0 -9px 5px;" src="style/search.png" alt="Search" title="Search" />
+          </p>
+        </form>
+      </div>
+      <div id="content">
+        <h1>Make a booking</h1>
+        <p><a href="current_booking.html">[Return to the Bookings listing]</a><a href="index.html">[Return to the main page]</a></p>
+        <h2>Booking for <!--(link to insert username here)--></h2>
+		<form action="#" method="post">
+          <div class="form_settings">
+			<p><span>Room (name,type,beds):</span><select id="roomId" ><option value="1">Kellie, S, 5</option><option value="2">Herman, D, 2</option>
+			<option value="3">Scarlett, D, 2</option><option value="4">Jelani, S, 2</option><option value="5">Sonya, S, 5</option><option value="6">Miranda, S, 4</option>
+			<option value="7">Helen, S, 2</option><option value="8">Octavia, D, 3</option><option value="9">Gretchen, D, 3</option><option value="10">Bernard, S, 5</option>
+			<option value="11">Dacey, D, 2</option><option value="12">Preston, D, 2</option><option value="13">Dane, S, 4</option><option value="14">Cole, S, 1</option></select></p>
+            <p><span>Checkin date:</span><input type="text" id="from" name="from" required /></p>
+			<p><span>Checkout date:</span><input type="text" id="to" name="to" required /></p>
+			<p><span>Contact number:</span><input type="text" id="contactNo" maxlength="10" value="##########" required /></p>
+			<p><span>Booking extras:</span><textarea rows="8" cols="50" id="extras"></textarea></p>
+			<p style="padding-top: 15px"><input class="submit" type="submit" id="addBooking" value="Add" /><a href="#">[Cancel]</a></p>
+
+			<!--<input id="addBooking" type="button" value="Add">
+			<button onclick="getContactNo()">get it</button>-->
+			<!--TO DO: make it record the values as variables and add to database, link to usernames-->
+		  </div>
+        </form>
+		<!--<p id="example"></p>-->
+		<script>
+		document.getElementById("addBooking").addEventListener("click", getContactNo);
+		function validateForm(){
+		}
+		function getContactNo() {
+			document.getElementById("example").innerHTML = document.contactNo;
+		//return contactNo;
+		}
+		</script>
+
+      </div>
+    </div>
+    <div id="footer">
+      Copyright &copy; black_white | <a href="http://validator.w3.org/check?uri=referer">HTML5</a> | <a href="http://jigsaw.w3.org/css-validator/check/referer">CSS</a> | <a href="http://www.html5webtemplates.co.uk">Free CSS Templates</a>
+    </div>
+  </div>
+</body>
+</html>
